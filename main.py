@@ -1,15 +1,17 @@
-import tkinter as tk
 import json
 import os
+import tkinter as tk
+
 
 def save_data():
     data = {
         "backlog": list(task_listbox1.get(0, tk.END)),
         "in_progress": list(task_listbox2.get(0, tk.END)),
-        "done": list(task_listbox3.get(0, tk.END))
+        "done": list(task_listbox3.get(0, tk.END)),
     }
     with open("tasks.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
+
 
 def load_data():
     if os.path.exists("tasks.json"):
@@ -25,12 +27,14 @@ def load_data():
         except json.JSONDecodeError:
             print("Ошибка чтения файла данных")
 
+
 def add_task():
     task = task_entry.get()
     if task:  # Проверяем, что поле не пустое
         task_listbox1.insert(tk.END, task)
         task_entry.delete(0, tk.END)  # Очищаем поле ввода после добавления
         save_data()  # Сохраняем данные после добавления задачи
+
 
 def move_right(listbox_from, listbox_to):
     selected = listbox_from.curselection()
@@ -40,6 +44,7 @@ def move_right(listbox_from, listbox_to):
         listbox_from.delete(selected[0])
         save_data()  # Сохраняем данные после перемещения задачи
 
+
 def move_left(listbox_from, listbox_to):
     selected = listbox_from.curselection()
     if selected:
@@ -48,9 +53,27 @@ def move_left(listbox_from, listbox_to):
         listbox_from.delete(selected[0])
         save_data()  # Сохраняем данные после перемещения задачи
 
+
 def on_closing():
     save_data()  # Сохраняем данные при закрытии окна
     root.destroy()
+
+
+def delete_task(listbox):
+    selected = listbox.curselection()
+    if selected:
+        listbox.delete(selected[0])
+        save_data()  # Сохраняем данные после удаления задачи
+
+
+def delete_task():
+    listbox = root.focus_get()
+    if isinstance(listbox, tk.Listbox):
+        selected = listbox.curselection()
+        if selected:
+            listbox.delete(selected[0])
+            save_data()  # Сохраняем данные после удаления задачи
+
 
 root = tk.Tk()
 root.geometry("800x400")
@@ -95,18 +118,31 @@ task_listbox3.grid(row=3, column=3, padx=5, pady=5, sticky="nsew")
 
 # Добавляем кнопки между списками
 # Между первым и вторым списком
-btn1_2_right = tk.Button(root, text="→", command=lambda: move_right(task_listbox1, task_listbox2))
-btn1_2_right.grid(row=3, column=1, padx=(160,0), pady=(0,30), sticky="e")
+btn1_2_right = tk.Button(
+    root, text="→", command=lambda: move_right(task_listbox1, task_listbox2)
+)
+btn1_2_right.grid(row=3, column=1, padx=(160, 0), pady=(0, 30), sticky="e")
 
-btn2_1_left = tk.Button(root, text="←", command=lambda: move_left(task_listbox2, task_listbox1))
-btn2_1_left.grid(row=3, column=1, padx=(160,0), pady=(30,0), sticky="e")
+btn2_1_left = tk.Button(
+    root, text="←", command=lambda: move_left(task_listbox2, task_listbox1)
+)
+btn2_1_left.grid(row=3, column=1, padx=(160, 0), pady=(30, 0), sticky="e")
 
 # Между вторым и третьим списком
-btn2_3_right = tk.Button(root, text="→", command=lambda: move_right(task_listbox2, task_listbox3))
-btn2_3_right.grid(row=3, column=2, padx=(160,0), pady=(0,30), sticky="e")
+btn2_3_right = tk.Button(
+    root, text="→", command=lambda: move_right(task_listbox2, task_listbox3)
+)
+btn2_3_right.grid(row=3, column=2, padx=(160, 0), pady=(0, 30), sticky="e")
 
-btn3_2_left = tk.Button(root, text="←", command=lambda: move_left(task_listbox3, task_listbox2))
-btn3_2_left.grid(row=3, column=2, padx=(160,0), pady=(30,0), sticky="e")
+btn3_2_left = tk.Button(
+    root, text="←", command=lambda: move_left(task_listbox3, task_listbox2)
+)
+btn3_2_left.grid(row=3, column=2, padx=(160, 0), pady=(30, 0), sticky="e")
+
+# Кнопка удаления задачи
+btn_delete_task = tk.Button(root, text="Удалить задачу", command=delete_task)
+btn_delete_task.grid(row=1, column=3, padx=5, pady=5, sticky="e")
+
 
 # Загружаем данные при запуске
 load_data()
