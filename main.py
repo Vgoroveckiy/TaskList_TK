@@ -1,10 +1,36 @@
 import tkinter as tk
+import json
+import os
+
+def save_data():
+    data = {
+        "backlog": list(task_listbox1.get(0, tk.END)),
+        "in_progress": list(task_listbox2.get(0, tk.END)),
+        "done": list(task_listbox3.get(0, tk.END))
+    }
+    with open("tasks.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+def load_data():
+    if os.path.exists("tasks.json"):
+        try:
+            with open("tasks.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                for task in data["backlog"]:
+                    task_listbox1.insert(tk.END, task)
+                for task in data["in_progress"]:
+                    task_listbox2.insert(tk.END, task)
+                for task in data["done"]:
+                    task_listbox3.insert(tk.END, task)
+        except json.JSONDecodeError:
+            print("Ошибка чтения файла данных")
 
 def add_task():
     task = task_entry.get()
     if task:  # Проверяем, что поле не пустое
         task_listbox1.insert(tk.END, task)
         task_entry.delete(0, tk.END)  # Очищаем поле ввода после добавления
+        save_data()  # Сохраняем данные после добавления задачи
 
 def move_right(listbox_from, listbox_to):
     selected = listbox_from.curselection()
@@ -12,6 +38,7 @@ def move_right(listbox_from, listbox_to):
         item = listbox_from.get(selected[0])
         listbox_to.insert(tk.END, item)
         listbox_from.delete(selected[0])
+        save_data()  # Сохраняем данные после перемещения задачи
 
 def move_left(listbox_from, listbox_to):
     selected = listbox_from.curselection()
@@ -19,9 +46,14 @@ def move_left(listbox_from, listbox_to):
         item = listbox_from.get(selected[0])
         listbox_to.insert(tk.END, item)
         listbox_from.delete(selected[0])
+        save_data()  # Сохраняем данные после перемещения задачи
+
+def on_closing():
+    save_data()  # Сохраняем данные при закрытии окна
+    root.destroy()
 
 root = tk.Tk()
-root.geometry("800x400")  # Уменьшаем размер окна
+root.geometry("800x400")
 root.title("Canban")
 root.configure(background="grey81")
 
@@ -75,5 +107,11 @@ btn2_3_right.grid(row=3, column=2, padx=(160,0), pady=(0,30), sticky="e")
 
 btn3_2_left = tk.Button(root, text="←", command=lambda: move_left(task_listbox3, task_listbox2))
 btn3_2_left.grid(row=3, column=2, padx=(160,0), pady=(30,0), sticky="e")
+
+# Загружаем данные при запуске
+load_data()
+
+# Настраиваем обработчик закрытия окна
+root.protocol("WM_DELETE_WINDOW", on_closing)
 
 root.mainloop()
