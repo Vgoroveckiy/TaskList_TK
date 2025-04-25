@@ -57,6 +57,8 @@ cd kanban-task-manager
 2. Установите зависимости:
 ```bash
 pip install tkcalendar
+
+python -m pip install tkcalendar
 ```
 
 3. Запустите приложение:
