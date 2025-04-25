@@ -1,13 +1,62 @@
 {
     "backlog": [
-        "Тестирование"
+        {
+            "title": "Сдача проекта",
+            "description": "",
+            "priority": "Низкий",
+            "assignee": "users",
+            "deadline": "16.04.2025",
+            "modified": "2025-04-25 11:49:40",
+            "modified_by": "admin_test"
+        },
+        {
+            "title": "Тестирование заказчиком",
+            "description": "тестирование",
+            "priority": "Средний",
+            "assignee": "admins",
+            "deadline": "30.04.2025",
+            "modified": "2025-04-25 11:49:19",
+            "modified_by": "admin_test"
+        }
     ],
     "in_progress": [
-        "Коддинг"
+        {
+            "title": "Коддинг",
+            "description": "",
+            "priority": "Средний",
+            "assignee": "admins",
+            "deadline": "13.05.2025",
+            "modified": "2025-04-25 11:53:39",
+            "modified_by": "admin_test"
+        },
+        {
+            "title": "Тестирование",
+            "description": "",
+            "priority": "Низкий",
+            "assignee": "users",
+            "deadline": "30.04.2025",
+            "modified": "2025-04-25 11:53:58",
+            "modified_by": "admin_test"
+        }
     ],
     "done": [
-        "Постановка задачи",
-        "Декомпозиция",
-        "Анализ"
+        {
+            "title": "Декомпозиция",
+            "description": "",
+            "priority": "",
+            "assignee": "",
+            "deadline": "",
+            "modified": "2025-04-25 11:15:37",
+            "modified_by": "user_test"
+        },
+        {
+            "title": "Постановка задачи",
+            "description": "",
+            "priority": "",
+            "assignee": "",
+            "deadline": "",
+            "modified": "2025-04-25 11:21:43",
+            "modified_by": "admin_test"
+        }
     ]
 }
