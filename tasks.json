@@ -1,62 +1,53 @@
 {
     "backlog": [
         {
-            "title": "Сдача проекта",
-            "description": "",
-            "priority": "Низкий",
+            "title": "Разработать и реализовать класс Game",
+            "description": "Класс, который управляет игрой",
+            "priority": "Средний",
             "assignee": "users",
-            "deadline": "16.04.2025",
-            "modified": "2025-04-25 11:49:40",
-            "modified_by": "admin_test"
+            "deadline": "27.05.2025",
+            "modified": "2025-05-26 15:35:52",
+            "modified_by": "admin"
         },
         {
-            "title": "Тестирование заказчиком",
-            "description": "тестирование",
+            "title": "Разработать и реализовать логику игры",
+            "description": "Реализовать всю логику игры. Управляет всеми персонажами и логикой боя",
             "priority": "Средний",
-            "assignee": "admins",
-            "deadline": "30.04.2025",
-            "modified": "2025-04-25 11:49:19",
-            "modified_by": "admin_test"
+            "assignee": "users",
+            "deadline": "27.05.2025",
+            "modified": "2025-05-26 15:37:40",
+            "modified_by": "admin"
         }
     ],
     "in_progress": [
         {
-            "title": "Коддинг",
-            "description": "",
+            "title": "Разработать и реализовать класс Hero",
+            "description": "Класс, который описывает поведение всех героев в игре",
             "priority": "Средний",
-            "assignee": "admins",
-            "deadline": "13.05.2025",
-            "modified": "2025-04-25 11:53:39",
-            "modified_by": "admin_test"
-        },
-        {
-            "title": "Тестирование",
-            "description": "",
-            "priority": "Низкий",
             "assignee": "users",
-            "deadline": "30.04.2025",
-            "modified": "2025-04-25 11:53:58",
-            "modified_by": "admin_test"
+            "deadline": "27.05.2025",
+            "modified": "2025-05-26 15:38:54",
+            "modified_by": "admin"
         }
     ],
     "done": [
         {
             "title": "Декомпозиция",
             "description": "",
-            "priority": "",
-            "assignee": "",
-            "deadline": "",
-            "modified": "2025-04-25 11:15:37",
-            "modified_by": "user_test"
+            "priority": "Средний",
+            "assignee": "users",
+            "deadline": "26.05.2025",
+            "modified": "2025-05-26 15:38:44",
+            "modified_by": "admin"
         },
         {
             "title": "Постановка задачи",
             "description": "",
-            "priority": "",
-            "assignee": "",
-            "deadline": "",
-            "modified": "2025-04-25 11:21:43",
-            "modified_by": "admin_test"
+            "priority": "Средний",
+            "assignee": "users",
+            "deadline": "26.05.2025",
+            "modified": "2025-05-26 15:38:24",
+            "modified_by": "admin"
         }
     ]
 }

@@ -1,8 +1,8 @@
 {
     "users": [
-        "user_test"
+        "user"
     ],
     "admins": [
-        "admin_test"
+        "admin"
     ]
 }
